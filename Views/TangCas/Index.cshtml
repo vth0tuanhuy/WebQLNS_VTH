@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebQLNS_VTH.Models.TangCa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.hoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soGio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngayTangCa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loaiTangCa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.hoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soGio)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.ngayTangCa)*@
+            @Convert.ToDateTime(item.ngayTangCa).ToString("dd/MM/yyyy")
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loaiTangCa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maTangCa }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maTangCa }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maTangCa })
+        </td>
+    </tr>
+}
+
+</table>

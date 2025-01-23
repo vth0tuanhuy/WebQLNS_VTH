@@ -1,0 +1,38 @@
+﻿body {
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+img {
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+a {
+    color: #3b76e1;
+    text-decoration: none;
+}
+.hienThiMa {
+    color: #10B1FC;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+/*.inputfile + label {
+        padding-inline:15px;
+        font-size: 1.25em;
+        font-weight: 700;
+        color: white;
+        background-color: red;
+        display: inline-block;
+        cursor: pointer;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+            background-color: red;
+}*/

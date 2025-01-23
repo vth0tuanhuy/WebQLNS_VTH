@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebQLNS_VTH.Models.YeuCauNP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.hoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tuNgay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.denNgay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tinhTrang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.hoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tuNgay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.denNgay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tinhTrang)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maYeuCauNP }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maYeuCauNP }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maYeuCauNP })
+        </td>
+    </tr>
+}
+
+</table>
