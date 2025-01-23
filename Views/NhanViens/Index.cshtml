@@ -4,7 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@*<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css" rel="stylesheet" />
+    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+    <script defer src="~/Scripts/tableDemo.js"></script>*@
+@*<script defer src="~/Scripts/tableDemo.js"></script>*@
 <div class="">
     @*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })*@
     <a href='@Url.Action("Create", "NhanViens")' class="btn btn-primary">
@@ -14,6 +21,41 @@
     </a>
     <h2 class="text-center">Danh sách nhân viên</h2>
 </div>
+@*<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>Martena Mccray</td>
+                <td>Post-Sales support</td>
+                <td>Edinburgh</td>
+                <td>46</td>
+                <td>2011/03/09</td>
+                <td>$324,050</td>
+            </tr>
+        }
+    </tbody>
+</table>*@
 <table class="table">
     <tr class="" style="background-color: #10B1FC;color: white">
         <th>
@@ -48,12 +90,12 @@
                 @{
                     string path = "~/Img/" + item.anh;
                 }
-                <img src="@Url.Content(path)" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid black; "/>
+                <img src="@Url.Content(path)" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid black; " />
                 <a href="@Url.Action("Edit","NhanViens",new {id = item.maNV})" class="text-body">
                     @Html.DisplayFor(modelItem => item.hoTen)
                 </a>
             </td>
-            <td class="align-middle" >
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.ChucVu.tenChucVu)
             </td>
             <td class="align-middle">
@@ -87,4 +129,5 @@
             </td>
         </tr>
     }
+
 </table>
