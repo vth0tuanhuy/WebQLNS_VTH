@@ -56,6 +56,7 @@ namespace WebQLNS_VTH.Controllers
         {
             if (ModelState.IsValid)
             {
+                nhanVien.anh = "logoft.png";
                 var f = Request.Files["FileName"];
                 if (f != null && f.ContentLength > 0)
                 {
@@ -65,11 +66,12 @@ namespace WebQLNS_VTH.Controllers
                     nhanVien.anh = tenfile;
                 }
                 var manageController = new ManageController();
-                var maNV = manageController.tuSinhMa(db.NhanViens.Max(x => x.maNV));
+                var maNV = manageController.tuSinhMa(db.NhanViens.Max(x=>x.maNV));
                 Debug.WriteLine(maNV.ToString());
                 nhanVien.maNV = maNV.ToString();
                 db.NhanViens.Add(nhanVien);
                 db.SaveChanges();
+                Session["Msg"] = "Thêm nhân viên thành công";
                 return RedirectToAction("Index");
             }
 
@@ -123,8 +125,19 @@ namespace WebQLNS_VTH.Controllers
             ViewBag.maChucVu = new SelectList(db.ChucVus, "maChucVu", "tenChucVu", nhanVien.maChucVu);
             return View(nhanVien);
         }
-
-        // GET: NhanViens/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(string id)
+        //{
+        //    var nhanVien = db.NhanViens.Find(id);
+        //    if (nhanVien != null)
+        //    {
+        //        db.NhanViens.Remove(nhanVien);
+        //        db.SaveChanges();
+        //        return Json(new { success = true });
+        //    }
+        //    return Json(new { success = false });
+        //}
+        //GET: NhanViens/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)

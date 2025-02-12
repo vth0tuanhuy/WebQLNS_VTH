@@ -98,7 +98,8 @@
                             <div class="col-md-5">
                                 @Html.LabelFor(model => model.ngayVaoCT, htmlAttributes: new { @class = "control-label col-md-5" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.ngayVaoCT, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input type="date" class="form-control" name="ngayVaoCT" id="ngayVaoCT" value="@Model.ngayVaoCT.Value.ToString("yyyy-MM-dd")" />
+                                    @*@Html.EditorFor(model => model.ngayVaoCT, new { htmlAttributes = new { @class = "form-control" } })*@
                                     @Html.ValidationMessageFor(model => model.ngayVaoCT, "", new { @class = "text-danger" })
                                 </div>
                             </div>

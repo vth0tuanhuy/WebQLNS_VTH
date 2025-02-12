@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,6 +18,21 @@ namespace WebQLNS_VTH.Controllers
         // GET: PhongBans
         public ActionResult Index()
         {
+            var PhongB = db.PhongBans.ToList();
+            var ChucV = db.ChucVus.ToList();
+            var NhanV = db.NhanViens.ToList(); 
+            var phongBans = db.PhongBans.Select(pb => new
+                            {
+                                PhongBanId = pb.maPhongBan,
+                                TenPhong = pb.tenPhongBan,
+                                SoLuongNhanVien = pb.ChucVus.SelectMany(cv => cv.NhanViens).Count() // Đếm số lượng nhân viên theo chức vụ
+                            }).ToList();
+            foreach (var i in phongBans)
+            {
+                Debug.WriteLine(i.ToString());
+            }
+            List<int> SLNV = new List<int>();
+            //return View(phongBans);
             return View(db.PhongBans.ToList());
         }
 

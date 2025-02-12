@@ -1,17 +1,14 @@
 ﻿@model WebQLNS_VTH.Models.Luong
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Luong</h4>
         <hr />
@@ -25,17 +22,20 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.maNV, "maNV", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.maNV, "maNV", htmlAttributes: new { @class = "control-label col-md-2", id = "selectNV" })
             <div class="col-md-10">
-                @Html.DropDownList("maNV", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.maNV, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*<input type="text" id="maNV" name="maNV" class="form-control" />*@
+                @*@Html.DropDownList("maNV", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.maNV, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.thangNam, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.thangNam, htmlAttributes: new { @class = "control-label col-md-2", id = "monthY" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.thangNam, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.thangNam, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="thangNam" name="thangNam" class="form-control" />
                 @Html.ValidationMessageFor(model => model.thangNam, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +43,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.bacLuong, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.bacLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.bacLuong, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="bacLuong" name="bacLuong" class="form-control" />
                 @Html.ValidationMessageFor(model => model.bacLuong, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +52,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.heSoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.heSoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.heSoLuong, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="heSoLuong" name="heSoLuong" class="form-control" />
                 @Html.ValidationMessageFor(model => model.heSoLuong, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +61,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.mucLuong, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.mucLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.mucLuong, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="mucLuong" name="mucLuong" class="form-control" />
                 @Html.ValidationMessageFor(model => model.mucLuong, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +70,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.phuCap, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.phuCap, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.phuCap, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="phuCap" name="phuCap" class="form-control" />
                 @Html.ValidationMessageFor(model => model.phuCap, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,7 +79,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.soNgayCong, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.soNgayCong, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.soNgayCong, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="soNgayCong" name="soNgayCong" class="form-control" />
                 @Html.ValidationMessageFor(model => model.soNgayCong, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -83,7 +88,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nghiKhongPhep, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nghiKhongPhep, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.nghiKhongPhep, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="nghiKhongPhep" name="nghiKhongPhep" class="form-control" />
                 @Html.ValidationMessageFor(model => model.nghiKhongPhep, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -91,7 +97,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.luongUngTruoc, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.luongUngTruoc, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.luongUngTruoc, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="luongUngTruoc" name="luongUngTruoc" class="form-control" />
                 @Html.ValidationMessageFor(model => model.luongUngTruoc, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +106,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.luongNhan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.luongNhan, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.luongNhan, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" id="luongNhan" name="luongNhan" class="form-control" />
                 @Html.ValidationMessageFor(model => model.luongNhan, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -111,11 +119,51 @@
         </div>
     </div>
 }
-
+<input type="text" id="maNV" placeholder="Nhập mã nhân viên">
+<input type="text" id="hoTen" placeholder="Họ tên" readonly>
+<input type="text" id="ngayVaoCongTy" placeholder="Ngày vào công ty" readonly>
+<input type="text" id="trinhDo" placeholder="Trình độ" readonly>
+<div id="message" style="color: red;"></div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+            $('#maNV').on('input', function() {
+                const maNV = $(this).val();
 
+                if (maNV) {
+                    $.ajax({
+                        url: '@Url.Action("GetEmployeeData", "Luongs")',
+                        type: 'GET',
+                        data: { maNV: maNV },
+                        success: function(data) {
+                            if (data) {
+                                $('#hoTen').val(data.hoTen);
+                                $('#ngayVaoCongTy').val(data.NgayVaoCongTy.toISOString().split('T')[0]); // Chỉ lấy ngày
+                                $('#trinhDo').val(data.trinhDo);
+                                $('#message').text('');
+                            } else {
+                                $('#hoTen').val('');
+                                $('#ngayVaoCongTy').val('');
+                                $('#trinhDo').val('');
+                                $('#message').text('Mã nhân viên không hợp lệ!');
+                            }
+                        },
+                        error: function() {
+                            $('#message').text('Có lỗi xảy ra!');
+                        }
+                    });
+                } else {
+                    $('#hoTen').val('');
+                    $('#ngayVaoCongTy').val('');
+                    $('#trinhDo').val('');
+                    $('#message').text('');
+                }
+            });
+        });
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

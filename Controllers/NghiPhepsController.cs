@@ -17,10 +17,16 @@ namespace WebQLNS_VTH.Controllers
         // GET: NghiPheps
         public ActionResult Index()
         {
+            ViewBag.NV = db.NhanViens.ToList();
             var nghiPheps = db.NghiPheps.Include(n => n.NhanVien);
             return View(nghiPheps.ToList());
         }
-
+        public ActionResult NghiPhepNV(string id)
+        {
+            var nghiPhep = db.NghiPheps.Where(n => n.maNV == id).ToList();
+            ViewBag.NVChon = db.NhanViens.Find(id);
+            return View(nghiPhep);
+        }
         // GET: NghiPheps/Details/5
         public ActionResult Details(string id)
         {

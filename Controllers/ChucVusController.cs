@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,6 +18,10 @@ namespace WebQLNS_VTH.Controllers
         // GET: ChucVus
         public ActionResult Index()
         {
+            //Session["Msg"] = null;
+            ViewBag.PBan = db.PhongBans.ToList();
+            //ViewBag.PBan1 = db.PhongBans.ToList();
+            ViewBag.maPhongBan = new SelectList(db.PhongBans, "maPhongBan", "tenPhongBan");
             var chucVus = db.ChucVus.Include(c => c.PhongBan);
             return View(chucVus.ToList());
         }
@@ -48,12 +53,17 @@ namespace WebQLNS_VTH.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maChucVu,tenChucVu,maPhongBan")] ChucVu chucVu)
+        public ActionResult Create([Bind(Include = "tenChucVu,maPhongBan")] ChucVu chucVu)
         {
             if (ModelState.IsValid)
             {
+                var manageController = new ManageController();
+                var maNV = manageController.tuSinhMa(db.ChucVus.Max(x=> x.maChucVu));
+                Debug.WriteLine(maNV.ToString());
+                chucVu.maChucVu = maNV.ToString();
                 db.ChucVus.Add(chucVu);
                 db.SaveChanges();
+                Session["Msg"] = "Thêm mới phúc";
                 return RedirectToAction("Index");
             }
 

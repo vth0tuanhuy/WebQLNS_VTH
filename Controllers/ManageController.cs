@@ -14,14 +14,18 @@ namespace WebQLNS_VTH.Controllers
         {
             string pTrc = tuSinhMa.Substring(0,2);
             string pSau = "";
-            int n = int.Parse(tuSinhMa.Substring(2,2)) + 1;
-            if(n > 9 )
+            int n = int.Parse(tuSinhMa.Substring(2,3)) + 1;
+            if(n > 99 )
             {
                 pSau = n.ToString();
             }
-            else
+            else if(n>9)
             {
                 pSau = "0"+n.ToString();
+            }
+            else
+            {
+                pSau = "00"+n.ToString();
             }
             return pTrc + pSau;
         }

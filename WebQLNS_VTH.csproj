@@ -249,6 +249,7 @@
     <Content Include="Views\YeuCauNPs\Details.cshtml" />
     <Content Include="Views\YeuCauNPs\Edit.cshtml" />
     <Content Include="Views\YeuCauNPs\Index.cshtml" />
+    <Content Include="Views\NghiPheps\NghiPhepNV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

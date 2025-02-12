@@ -23,6 +23,9 @@ a {
     font-size: 20px;
     text-transform: uppercase;
 }
+.border-left {
+    border-left: 4px solid #10B1FC;
+}
 /*.inputfile + label {
         padding-inline:15px;
         font-size: 1.25em;

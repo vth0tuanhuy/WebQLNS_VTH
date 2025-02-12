@@ -12,9 +12,18 @@ namespace WebQLNS_VTH.Controllers
 {
     public class LuongsController : Controller
     {
-        private Model1 db = new Model1();
+        public Model1 db = new Model1();
 
         // GET: Luongs
+        public JsonResult GetEmployeeData(string maNV)
+        {
+            var employee = db.NhanViens.FirstOrDefault(e => e.maNV == maNV);
+            if (employee != null)
+            {
+                return Json(employee, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Index()
         {
             var luongs = db.Luongs.Include(l => l.NhanVien);
@@ -39,7 +48,9 @@ namespace WebQLNS_VTH.Controllers
         // GET: Luongs/Create
         public ActionResult Create()
         {
-            ViewBag.maNV = new SelectList(db.NhanViens, "maNV", "hoTen");
+            var list = db.NhanViens.ToList();
+            ViewBag.NV = list;
+            ViewBag.maNV = new SelectList(db.NhanViens, "maNV", "maNV");
             return View();
         }
 

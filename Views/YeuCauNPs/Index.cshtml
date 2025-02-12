@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script defer src="~/Scripts/tableDemo.js"></script>
 
 <h2>Index</h2>
 
@@ -27,26 +28,132 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhanVien.hoTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tuNgay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.denNgay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tinhTrang)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maYeuCauNP }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maYeuCauNP }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maYeuCauNP })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NhanVien.hoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tuNgay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.denNgay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tinhTrang)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maYeuCauNP }) |
+                @Html.ActionLink("Details", "Details", new { id = item.maYeuCauNP }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maYeuCauNP })
+            </td>
+        </tr>
+    }
 
 </table>
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr style="background-color: #10B1FC;color: white">
+            <th class="col-1">
+                Mã yêu cầu
+            </th>
+            <th class="col-3">
+                Họ và tên
+            </th>
+            <th class="col-3">
+                Chức vụ
+            </th>
+            <th class="col-1">
+                Từ ngày
+            </th>
+            <th class="col-1">
+                Đến ngày
+            </th>
+            <th class="col-3">
+                Tình trạng
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="" id="row-@item.maYeuCauNP">
+                <td class="align-middle">
+                    @item.maYeuCauNP
+                </td>
+                <td>
+                    <img src="~/Img/@item.NhanVien.anh" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid black; " />
+                    @item.NhanVien.hoTen
+                </td>
+                <td class="align-middle">
+                    @item.NhanVien.ChucVu.tenChucVu
+                </td>
+                <td class="align-middle">
+                    @String.Format("{0:dd/MM/yyyy}", item.tuNgay)
+                </td>
+                <td class="align-middle">
+                    @String.Format("{0:dd/MM/yyyy}", item.denNgay)
+                </td>
+                @if (item.tinhTrang == "Chưa duyệt")
+                {
+                    <td id="tdChoice" class="align-middle bg-warning  rounded-2" data-bs-toggle="modal" data-bs-target="#myModal-@item.maYeuCauNP">
+                        <span class="text-center fw-bolder" style="width:100%"> @item.tinhTrang</span>
+                        <div class="modal text-reset" id="myModal-@item.maYeuCauNP">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <div class="position-relative booking">
+                                            <div class="media">
+                                                <img src="~/Img/@item.NhanVien.anh" style="height: 100px; width: 100px; border-radius: 50%; object-fit: cover; border: 1px solid black; " />
+                                                <span class="text-uppercase fw-bolder h2 ps-lg-3"> @item.NhanVien.hoTen</span>
+                                                <div class="media-body">
+                                                    <div class="mb-3">
+                                                        <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Nghỉ phép:</span>
+                                                        <span class="bg-light-blue">@item.tuNgay.Value.ToString("dd/MM/yyyy") - @item.denNgay.Value.ToString("dd/MM/yyyy")</span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        @{
+                                                                    TimeSpan difference = item.denNgay.Value - item.tuNgay.Value;
+                                                                    int daysDifference = difference.Days;
+                                                                }
+                                                        <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Tương đương với:</span>
+                                                        <span class="bg-light-blue">@daysDifference ngày</span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Số ngày nghỉ phép còn lại:</span>
+                                                        <span class="bg-light-blue">@(22 - daysDifference) ngày</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <button class="btn btn-outline-primary col-6" type="button" onclick="location.href='@Url.Action("XacNhan", "YeuCauNPs",new {id = item.maYeuCauNP})'">
+                                                    Chấp nhận
+                                                </button>
+                                                <button class="btn btn-outline-danger col-6" type="button" onclick="location.href='@Url.Action("XacNhan", "YeuCauNPs",new {id = item.maYeuCauNP})'">
+                                                    Từ chối
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                }
+            </tr>
+}
+</tbody>
+</table>
+<style>
+/*    #tdChoice:hover{
+        opacity: 0.7;
+    }*/
+    .bg-light-blue {
+        background-color: #e9f7fe !important;
+        color: #3184ae;
+        padding: 7px 18px;
+        border-radius: 4px;
+    }
+</style>
